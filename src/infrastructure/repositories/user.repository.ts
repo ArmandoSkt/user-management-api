@@ -16,16 +16,16 @@ export class UserRepository {
         return await this.userModel.create(user);
     }
 
+    async findAllUsers(): Promise<User[]> {
+        return await this.userModel.find();
+    }
+
     async findUserById(id: string): Promise<User> {
         return await this.userModel.findById(id);
     }
 
-    async findUserByEmail(email: string): Promise<User> {
-        return await this.userModel.findOne({ email });
-    }
-
-    async findAllUsers(): Promise<User[]> {
-        return await this.userModel.find();
+    async findUserAddress(id: string): Promise<User> {
+        return await this.userModel.findById(id).select('address');
     }
 
     async updateUser(id: string, user: User): Promise<User> {
